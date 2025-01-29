@@ -1,9 +1,9 @@
 streamlit
-pytorch
-pandas 
-numpy 
+pandas
+scikit-learn
+numpy
+seasborn
 matplotlib
 math
+torch
 yfinance
-seaborn
-scikit-learn
