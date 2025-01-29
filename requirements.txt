@@ -4,6 +4,5 @@ scikit-learn
 numpy
 seaborn
 matplotlib
-math
 torch
 yfinance
