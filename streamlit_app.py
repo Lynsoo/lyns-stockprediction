@@ -19,7 +19,9 @@ st.info('This is a stock prediction app')
 ticker = st.text_input("Company's Ticker", placeholder ="Enter Ticker")
 df_ticker= [ticker]
 df = yf.download( df_ticker, period = 'max')
-
+if df is None : 
+  st.write('df is empty')
+  
 training_data_len = math.ceil(len(df)*.8)
 training_data_len
 
