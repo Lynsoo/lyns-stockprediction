@@ -37,11 +37,10 @@ dataset_train = train_data.Open.values
 dataset_train = np.reshape(dataset_train, (-1,1))
 
 from sklearn.preprocessing import MinMaxScaler
-scaler = MinMaxScaler(feature_range=(0,1))
 
-# scaling dataset
-scaled_train= scaler.fit_transform(dataset_train)
-scaled_test = scaler.fit_transform(dataset_test)
+scaler = MinMaxScaler(feature_range=(0,1))
+scaled_train = scaler.fit_transform(dataset_train)
+scaled_test = scaler.transform(dataset_test)
 
 sequence_length = 50 # nb of time steps to look back
 X_train, y_train = [], []
