@@ -2,7 +2,7 @@ streamlit
 pandas
 scikit-learn
 numpy
-seasborn
+seaborn
 matplotlib
 math
 torch
