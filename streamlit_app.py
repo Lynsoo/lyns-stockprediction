@@ -17,10 +17,20 @@ st.title('Stock Prediction App')
 st.info('This is a stock prediction app')
 
 ticker = st.text_input("Company's Ticker", placeholder ="Enter Ticker")
-df_ticker= [ticker]
-df = yf.download( df_ticker, period = 'max')
-if df is None : 
-  st.write('df is empty')
+
+if ticker:  # Check if the user has entered a ticker
+    try:
+        # Download historical stock data for the entered ticker
+        df = yf.download(ticker, period='max')
+        
+        # Display the downloaded DataFrame
+        st.write(f"Data for {ticker}:")
+        st.dataframe(df)
+        
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+else:
+    st.warning("Please enter a valid ticker symbol.")
   
 training_data_len = math.ceil(len(df)*.8)
 training_data_len
