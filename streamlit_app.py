@@ -64,7 +64,6 @@ if df is not None and not df.empty:
     X_train, y_train = np.array(X_train), np.array(y_train)
     X_train = torch.tensor(X_train, dtype=torch.float32)
     y_train = torch.tensor(y_train, dtype=torch.float32)
-    st.write(X_train.shape, y_train.shape)
     
     sequence_length = 30 #nb of time steps to look back
     X_test, y_test = [], []
@@ -87,6 +86,7 @@ if df is not None and not df.empty:
           out = self.linear(out)
           return out
     device = torch.device('cpu')
+    st.write(device)
 
     input_size = 1
     num_layers = 2
