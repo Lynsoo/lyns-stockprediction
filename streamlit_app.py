@@ -107,6 +107,7 @@ if df is not None and not df.empty:
     #creating Dataloader for batch testing
     test_dataset = torch.utils.data.TensorDataset(X_test, y_test)
     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
+    st.write(train_loader,test_loader)
 
     num_epochs = 50
     train_hist =[]
