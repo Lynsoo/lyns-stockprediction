@@ -98,7 +98,6 @@ if df is not None and not df.empty:
     loss_fn = torch.nn.MSELoss(reduction='mean')
 
     optimizer=torch.optim.Adam(model.parameters(), lr=1e-3)
-    st.write(model)
 
     batch_size = 16
     # creating DataLoader for batch training
@@ -147,7 +146,7 @@ if df is not None and not df.empty:
            average_test_loss = total_test_loss / len(test_loader)
            test_hist.append(average_test_loss)
         if (epoch+1)%10==0:
-          print(f'epoch[{epoch+1}/{num_epochs}] - Training Loss : {average_loss:.4f}, Test Loss : {average_test_loss:.4f}')
+          st.write(f'epoch[{epoch+1}/{num_epochs}] - Training Loss : {average_loss:.4f}, Test Loss : {average_test_loss:.4f}')
 
     x = np.linspace(1,num_epochs,num_epochs)
     plt.plot(x,train_hist,scalex= True, label="Training loss")
