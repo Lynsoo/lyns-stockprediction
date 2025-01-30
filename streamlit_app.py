@@ -55,8 +55,7 @@ if df is not None and not df.empty:
     scaler = MinMaxScaler(feature_range=(0,1))
     scaled_train = scaler.fit_transform(dataset_train)
     scaled_test = scaler.transform(dataset_test)
-    st.write(*scaled_test[:5])
-
+ 
     sequence_length = 50 # nb of time steps to look back
     X_train, y_train = [], []
     for i in range(len(scaled_train) - sequence_length):
@@ -65,7 +64,8 @@ if df is not None and not df.empty:
     X_train, y_train = np.array(X_train), np.array(y_train)
     X_train = torch.tensor(X_train, dtype=torch.float32)
     y_train = torch.tensor(y_train, dtype=torch.float32)
-
+    st.write(X_train.shape, y_train.shape)
+    
     sequence_length = 30 #nb of time steps to look back
     X_test, y_test = [], []
     for i in range(len(scaled_test) - sequence_length):
