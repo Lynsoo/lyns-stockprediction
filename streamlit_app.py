@@ -35,10 +35,10 @@ else:
 
 if df is not None and not df.empty:
     training_data_len = math.ceil(len(df)*.8)
-    st.write(training_data_len)
 
     train_data = df[:training_data_len][[('Open', ticker)]]
     test_data = df[training_data_len:][[('Open', ticker)]]
+    st.write(train_data.shape, test_data.shape)
 
     try :
       dataset_test = test_data.Open.values
