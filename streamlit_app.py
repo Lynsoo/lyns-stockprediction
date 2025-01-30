@@ -152,4 +152,4 @@ if df is not None and not df.empty:
     plt.plot(x,train_hist,scalex= True, label="Training loss")
     plt.plot(x, test_hist, label="Test loss")
     plt.legend()
-    plt.show()
+    st.pyplot()
