@@ -33,7 +33,6 @@ else:
     st.warning("Please enter a valid ticker symbol.")
   
 training_data_len = math.ceil(len(df)*.8)
-training_data_len
 
 train_data = df[:training_data_len][[('Open', ticker)]]
 test_data = df[training_data_len:][[('Open', ticker)]]
