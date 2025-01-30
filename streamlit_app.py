@@ -38,17 +38,18 @@ if df is not None and not df.empty:
 
     train_data = df[:training_data_len][[('Open', ticker)]]
     test_data = df[training_data_len:][[('Open', ticker)]]
-    st.write(train_data.shape, test_data.shape)
-
+    
     try :
       dataset_test = test_data.Open.values
     except :
       dataset_test = test_data[('Open', ticker)].values
     #1D to 2D
     dataset_test = np.reshape(dataset_test, (-1,1))
+    st.write(dataset_test.shape)
 
     dataset_train = train_data.Open.values
     dataset_train = np.reshape(dataset_train, (-1,1))
+    st.write(dataset_train.shape)
 
     from sklearn.preprocessing import MinMaxScaler
 
