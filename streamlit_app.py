@@ -131,8 +131,7 @@ if df is not None and not df.empty:
          # calculating average training loss and accuracy
         average_loss = total_loss /len(train_loader)
         train_hist.append(average_loss)
-        st.write(train_hist)
-
+       
         model.eval()
         with torch.no_grad():
            total_test_loss = 0.0
