@@ -45,17 +45,17 @@ if df is not None and not df.empty:
       dataset_test = test_data[('Open', ticker)].values
     #1D to 2D
     dataset_test = np.reshape(dataset_test, (-1,1))
-    st.write(dataset_test.shape)
 
     dataset_train = train_data.Open.values
     dataset_train = np.reshape(dataset_train, (-1,1))
-    st.write(dataset_train.shape)
+
 
     from sklearn.preprocessing import MinMaxScaler
 
     scaler = MinMaxScaler(feature_range=(0,1))
     scaled_train = scaler.fit_transform(dataset_train)
     scaled_test = scaler.transform(dataset_test)
+    st.write(*scaled_test[:5])
 
     sequence_length = 50 # nb of time steps to look back
     X_train, y_train = [], []
