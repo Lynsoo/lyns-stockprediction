@@ -84,7 +84,7 @@ if df is not None and not df.empty:
           out, _ =self.lstm(x)
           out = self.linear(out)
           return out
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cpu')
 
     input_size = 1
     num_layers = 2
