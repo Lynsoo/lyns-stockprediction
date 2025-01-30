@@ -86,7 +86,6 @@ if df is not None and not df.empty:
           out = self.linear(out)
           return out
     device = torch.device('cpu')
-    st.write(device)
 
     input_size = 1
     num_layers = 2
@@ -99,6 +98,7 @@ if df is not None and not df.empty:
     loss_fn = torch.nn.MSELoss(reduction='mean')
 
     optimizer=torch.optim.Adam(model.parameters(), lr=1e-3)
+    st.write(model)
 
     batch_size = 16
     # creating DataLoader for batch training
