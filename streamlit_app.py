@@ -148,8 +148,57 @@ if df is not None and not df.empty:
         if (epoch+1)%10==0:
           st.write(f'epoch[{epoch+1}/{num_epochs}] - Training Loss : {average_loss:.4f}, Test Loss : {average_test_loss:.4f}')
 
-    x = np.linspace(1,num_epochs,num_epochs)
-    plt.plot(x,train_hist,scalex= True, label="Training loss")
-    plt.plot(x, test_hist, label="Test loss")
+    num_forecast_steps = 30
+
+    # converting to NumPy and remove singleton dimensions
+    sequence_to_plot = X_test.squeeze().cpu().numpy()
+
+    # use the last 30 data points as the starting point
+    historical_data = sequence_to_plot[-1]
+    st.write(historical_data.shape)
+
+    # initializing a list to store the forecasted value
+    forecasted_values = []
+
+    # using the trained model to forecast the future values
+    with torch.no_grad():
+        for _ in range(num_forecast_steps*2):
+            # converting the historical data to a tensor and add an extra dimension
+            historical_data_tensor = torch.as_tensor(historical_data).view(1, -1, 1).float().to(device)
+
+            # prediction for the next time step
+            predicted_value = model(historical_data_tensor).cpu().numpy()[0,0]
+            forecasted_values.append(predicted_value)
+
+            # updating the historical data with the predicted value
+            historical_data = np.roll(historical_data, -1)
+            historical_data[-1] = predicted_value
+
+    # Generating future dates
+    last_date = test_data.index[-1]
+    future_dates = pd.date_range(start=last_date + pd.DateOffset(1), periods=30)
+    combined_index = test_data.index.append(future_dates)
+
+    plt.rcParams['figure.figsize']=[14, 4]
+
+
+    #Test Data
+    plt.plot(test_data.index[-100: -30], test_data.Open[-100:-30], label= "test_data", color = "b")
+    #reversing the scaling transformation
+    original_cases = scaler.inverse_transform(np.expand_dims(sequence_to_plot[-1], axis=0)).flatten()
+
+    #the historical data used as input for forecasting
+    plt.plot(test_data.index[-30:], original_cases, label='actual values', color='green')
+
+    #Forecasted Values
+    #reversing the scaling transformation
+    forecasted_cases = scaler.inverse_transform(np.array(forecasted_values).reshape(-1, 1)).flatten()
+    # plotting the forecasted values
+    plt.plot(combined_index[-60:], forecasted_cases, label='forecasted values', color='red')
+
+    plt.xlabel('Time Step')
+    plt.ylabel('Value')
     plt.legend()
-    st.pyplot()
+    plt.title('Time Series Forecasting')
+    plt.grid(True)
+    st.pyplot(plt)
