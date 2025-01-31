@@ -131,6 +131,8 @@ if df is not None and not df.empty:
          # calculating average training loss and accuracy
         average_loss = total_loss /len(train_loader)
         train_hist.append(average_loss)
+
+        st.write('Please wait a few seconds')
        
         model.eval()
         with torch.no_grad():
@@ -145,8 +147,7 @@ if df is not None and not df.empty:
            #calculating average test loss and accuracy
            average_test_loss = total_test_loss / len(test_loader)
            test_hist.append(average_test_loss)
-    st.write('Please wait a few seconds')
-
+    
     num_forecast_steps = 30
 
     # converting to NumPy and remove singleton dimensions
