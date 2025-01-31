@@ -155,7 +155,6 @@ if df is not None and not df.empty:
 
     # use the last 30 data points as the starting point
     historical_data = sequence_to_plot[-1]
-    st.write(historical_data.shape)
 
     # initializing a list to store the forecasted value
     forecasted_values = []
