@@ -75,7 +75,7 @@ if df is not None and not df.empty:
     X_test = torch.tensor(X_test, dtype=torch.float32)
     y_test = torch.tensor(y_test, dtype=torch.float32)
 
-    st.write('Please wait a few seconds')
+    info = st.write('Please wait a few seconds...')
 
     class LSTMModel(nn.Module):
         def __init__(self, input_size, hidden_size, num_layers):
@@ -180,6 +180,7 @@ if df is not None and not df.empty:
 
     plt.rcParams['figure.figsize']=[14, 4]
 
+    info = None
 
     #Test Data
     plt.plot(test_data.index[-100: -30], test_data.Open[-100:-30], label= "test_data", color = "b")
