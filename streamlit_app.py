@@ -180,8 +180,6 @@ if df is not None and not df.empty:
 
     plt.rcParams['figure.figsize']=[14, 4]
 
-    info.clear()
-
     #Test Data
     plt.plot(test_data.index[-100: -30], test_data.Open[-100:-30], label= "test_data", color = "b")
     #reversing the scaling transformation
@@ -195,6 +193,8 @@ if df is not None and not df.empty:
     forecasted_cases = scaler.inverse_transform(np.array(forecasted_values).reshape(-1, 1)).flatten()
     # plotting the forecasted values
     plt.plot(combined_index[-60:], forecasted_cases, label='forecasted values', color='red')
+
+    st.write('Forecasted Values Chart for' + ticker )
 
     plt.xlabel('Time Step')
     plt.ylabel('Value')
