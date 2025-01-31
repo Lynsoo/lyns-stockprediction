@@ -145,7 +145,7 @@ if df is not None and not df.empty:
            #calculating average test loss and accuracy
            average_test_loss = total_test_loss / len(test_loader)
            test_hist.append(average_test_loss)
-st.write('Please wait a few seconds')
+    st.write('Please wait a few seconds')
 
     num_forecast_steps = 30
 
@@ -157,7 +157,7 @@ st.write('Please wait a few seconds')
 
     # initializing a list to store the forecasted value
     forecasted_values = []
-
+    
     # using the trained model to forecast the future values
     with torch.no_grad():
         for _ in range(num_forecast_steps*2):
