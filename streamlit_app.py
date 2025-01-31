@@ -194,7 +194,7 @@ if df is not None and not df.empty:
     # plotting the forecasted values
     plt.plot(combined_index[-60:], forecasted_cases, label='forecasted values', color='red')
 
-    st.write('Forecasted Values Chart for' + ticker )
+    st.write('Forecasted Values Chart for ' + ticker )
 
     plt.xlabel('Time Step')
     plt.ylabel('Value')
