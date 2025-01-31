@@ -145,8 +145,7 @@ if df is not None and not df.empty:
            #calculating average test loss and accuracy
            average_test_loss = total_test_loss / len(test_loader)
            test_hist.append(average_test_loss)
-        if (epoch+1)%10==0:
-          st.write(f'epoch[{epoch+1}/{num_epochs}] - Training Loss : {average_loss:.4f}, Test Loss : {average_test_loss:.4f}')
+st.write('Please wait a few seconds')
 
     num_forecast_steps = 30
 
