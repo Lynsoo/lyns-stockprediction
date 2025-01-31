@@ -180,7 +180,7 @@ if df is not None and not df.empty:
 
     plt.rcParams['figure.figsize']=[14, 4]
 
-    info = None
+    info.clear()
 
     #Test Data
     plt.plot(test_data.index[-100: -30], test_data.Open[-100:-30], label= "test_data", color = "b")
