@@ -1,6 +1,6 @@
-#  Stock Prediction App
+#  Stock Prediction App 📈
 
-This
+A machine learning-powered web app for forecasting stock prices (worldwide).
 
 ## Demo App
 
