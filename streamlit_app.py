@@ -75,6 +75,8 @@ if df is not None and not df.empty:
     X_test = torch.tensor(X_test, dtype=torch.float32)
     y_test = torch.tensor(y_test, dtype=torch.float32)
 
+    st.write('Please wait a few seconds')
+
     class LSTMModel(nn.Module):
         def __init__(self, input_size, hidden_size, num_layers):
           super(LSTMModel,self).__init__() #initializes the parent class nn.Module
@@ -131,8 +133,6 @@ if df is not None and not df.empty:
          # calculating average training loss and accuracy
         average_loss = total_loss /len(train_loader)
         train_hist.append(average_loss)
-
-        st.write('Please wait a few seconds')
        
         model.eval()
         with torch.no_grad():
