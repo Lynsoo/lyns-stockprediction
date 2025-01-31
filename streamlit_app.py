@@ -22,7 +22,7 @@ df = None
 if ticker:  # Check if the user has entered a ticker
     try:
         # Download historical stock data for the entered ticker
-        df = yf.download(ticker, period = 'max')
+        df = yf.download(ticker, period = '10y')
         
         # Display the downloaded DataFrame
         st.write(f"Data for {ticker}:")
