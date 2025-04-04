@@ -8,6 +8,7 @@ import matplotlib.dates as mdates
 import seaborn as sns
 import math
 import yfinance as yf
+import lxml
 
 from torch.utils.data import Dataset, DataLoader
 from datetime import date, timedelta, datetime
