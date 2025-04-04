@@ -16,27 +16,35 @@ st.title('Stock Prediction App')
 
 st.info('This is a stock prediction app')
 
-euronext = pd.read_csv('eurotickers.csv', sep=';')
-euronext_f = euronext[['Name', 'Symbol']]
+# Loading Euronext data with streamlit caching
+@st.cache_data
+def load_euronext_data():
+    euronext = pd.read_csv('eurotickers.csv', sep=';')
+    return euronext[['Name', 'Symbol']]
 
+euronext_f = load_euronext_data()
 
-# Fetching S&P 500 stocks as an example
-table = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
-sp500_stocks = table[0]
-
-# Extracting tickers and company names
-tickers = sp500_stocks['Symbol'].tolist()
-companies = sp500_stocks['Security'].tolist()
-
-# Creating a DataFrame with tickers and company names
-dictionary = pd.DataFrame({
+# Loading S&P 500 data with caching
+@st.cache_data
+def load_sp500_data():
+    table = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
+    sp500_stocks = table[0]
+    tickers = sp500_stocks['Symbol'].tolist()
+    companies = sp500_stocks['Security'].tolist()
+    dictionary = pd.DataFrame({
         'Name': companies,
         'Symbol': tickers,
-})
+    })
+    return dictionary
 
-# Saving to CSV
-tickerlist = dictionary.to_dict(orient='records')
-combined_data= pd.concat([dictionary, euronext_f], ignore_index=True)
+dictionary = load_sp500_data()
+
+@st.cache_data
+def combine_data(euronext_f, dictionary):
+    combined_data = pd.concat([dictionary, euronext_f], ignore_index=True)
+    return combined_data
+
+combined_data = combine_data(euronext_f, dictionary)
 
 
 company= st.text_input("Company Name", placeholder ="Enter Company")
