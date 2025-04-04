@@ -17,8 +17,11 @@ st.title('Stock Prediction App')
 
 st.info('This is a stock prediction app')
 
+if st.button("Clear All") :
+    st.cache_data.clear()
+
 # Loading Euronext data with streamlit caching
-@st.cache_data
+@st.cache_data(ttl=7 * 24 * 60 * 60)
 def load_euronext_data():
     euronext = pd.read_csv('eurotickers.csv', sep=';')
     return euronext[['Name', 'Symbol']]
