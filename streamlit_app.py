@@ -132,7 +132,7 @@ if df is not None and not df.empty:
           return out
     device = torch.device('cpu')
     
-    @st.cache_resource
+    @st.cache_resource(ttl=7 * 24 * 60 * 60)
     def load_model(input_size, hidden_size, num_layers):
         return LSTMModel(input_size=input_size, hidden_size=hidden_size, num_layers=num_layers)
 
@@ -142,60 +142,9 @@ if df is not None and not df.empty:
     output_size = 1
    
     model = load_model(input_size, hidden_size, num_layers).to(device)
+    model.load_state_dict(torch.load('pretrained_lstm_model.pth'))
+    model.eval()
 
-    if st.button("Clear recource cache") : 
-        st.cache_resource.clear()
-
-    loss_fn = torch.nn.MSELoss(reduction='mean')
-
-    optimizer=torch.optim.Adam(model.parameters(), lr=1e-3)
-
-    batch_size = 16
-    # creating DataLoader for batch training
-    train_dataset = torch.utils.data.TensorDataset(X_train, y_train)
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-
-    #creating Dataloader for batch testing
-    test_dataset = torch.utils.data.TensorDataset(X_test, y_test)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=True)
-    
-    num_epochs = 50
-    train_hist =[]
-    test_hist =[]
-    #training loop
-    for epoch in range(num_epochs):
-        total_loss = 0.0
-
-        #training
-        model.train()
-        for batch_X, batch_y in train_loader:
-            batch_X, batch_y = batch_X.to(device), batch_y.to(device)
-            predictions = model(batch_X)
-            loss=loss_fn(predictions, batch_y)
-
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-
-            total_loss += loss.item()
-
-         # calculating average training loss and accuracy
-        average_loss = total_loss /len(train_loader)
-        train_hist.append(average_loss)
-       
-        model.eval()
-        with torch.no_grad():
-           total_test_loss = 0.0
-
-           for batch_X_test, batch_y_test in test_loader:
-               batch_X_test, batch_y_test = batch_X_test.to(device), batch_y_test.to(device)
-               predictions_test = model(batch_X_test)
-               test_loss = loss_fn(predictions_test, batch_y_test)
-
-               total_test_loss += test_loss.item()
-           #calculating average test loss and accuracy
-           average_test_loss = total_test_loss / len(test_loader)
-           test_hist.append(average_test_loss)
     
     num_forecast_steps = 30
 
