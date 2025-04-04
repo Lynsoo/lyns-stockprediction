@@ -16,6 +16,8 @@ st.title('Stock Prediction App')
 
 st.info('This is a stock prediction app')
 
+euronext = pd.read_csv('eurotickers.csv', sep=';')
+
 ticker = st.text_input("Company's Ticker", placeholder ="Enter Ticker")
 df = None
 
