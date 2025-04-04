@@ -55,18 +55,29 @@ df = None
 
 if company:  # Checking if the user has entered a ticker
     try:
-        ticker = combined_data[combined_data['Name'].str.contains(company, case=False)]
-        # Downloading historical stock data for the entered ticker
-        df = yf.download(ticker, period = '10y')
+        matching_tickers = combined_data[combined_data['Name'].str.contains(company, case=False)]
+        if not matching_tickers.empty:
+            # Extract the ticker symbol(s) from the matching row(s)
+            tickers = matching_tickers['Symbol'].tolist()
+            
+            # Handle multiple matches if needed
+            if len(tickers) > 1:
+                st.write(f"Multiple tickers found for '{company}': {tickers}")
+                # You can either select one ticker or handle them all
+                ticker = tickers[0]  #using the first match
+            else:
+                ticker = tickers[0]
+            # Downloading historical stock data for the entered ticker
+            df = yf.download(ticker, period = '10y')
         
-        # Downloaded DataFrame Display
-        st.write(f"Data for {ticker}:")
-        st.dataframe(df)
+            # Downloaded DataFrame Display
+            st.write(f"Data for {ticker}:")
+            st.dataframe(df)
         
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
-else:
-    st.warning("Please enter a valid company.")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
+    else:
+        st.warning("Please enter a valid company.")
 
 if df is not None and not df.empty:
     training_data_len = math.ceil(len(df)*.8)
