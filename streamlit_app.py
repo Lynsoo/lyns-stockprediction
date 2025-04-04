@@ -62,9 +62,8 @@ if company:  # Checking if the user has entered a ticker
             
             # Handle multiple matches if needed
             if len(tickers) > 1:
-                st.write(f"Multiple tickers found for '{company}': {tickers}")
                 # You can either select one ticker or handle them all
-                ticker = tickers[0]  #using the first match
+                ticker = st.selectbox("Multiple tickers found. Please select one:", tickers)
             else:
                 ticker = tickers[0]
             # Downloading historical stock data for the entered ticker
