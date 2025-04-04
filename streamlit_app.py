@@ -17,23 +17,45 @@ st.title('Stock Prediction App')
 st.info('This is a stock prediction app')
 
 euronext = pd.read_csv('eurotickers.csv', sep=';')
+euronext_f = euronext[['Name', 'Symbol']]
 
-ticker = st.text_input("Company's Ticker", placeholder ="Enter Ticker")
+
+# Fetching S&P 500 stocks as an example
+table = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
+sp500_stocks = table[0]
+
+# Extracting tickers and company names
+tickers = sp500_stocks['Symbol'].tolist()
+companies = sp500_stocks['Security'].tolist()
+
+# Creating a DataFrame with tickers and company names
+dictionary = pd.DataFrame({
+        'Name': companies,
+        'Symbol': tickers,
+})
+
+# Saving to CSV
+tickerlist = dictionary.to_dict(orient='records')
+combined_data= pd.concat([dictionary, euronext_f], ignore_index=True)
+
+
+company= st.text_input("Company Name", placeholder ="Enter Company")
 df = None
 
-if ticker:  # Check if the user has entered a ticker
+if company:  # Checking if the user has entered a ticker
     try:
-        # Download historical stock data for the entered ticker
+        ticker = combined_data[combined_data['Name'].str.contains(company, case=False)]
+        # Downloading historical stock data for the entered ticker
         df = yf.download(ticker, period = '10y')
         
-        # Display the downloaded DataFrame
+        # Downloaded DataFrame Display
         st.write(f"Data for {ticker}:")
         st.dataframe(df)
         
     except Exception as e:
         st.error(f"An error occurred: {e}")
 else:
-    st.warning("Please enter a valid ticker symbol.")
+    st.warning("Please enter a valid company.")
 
 if df is not None and not df.empty:
     training_data_len = math.ceil(len(df)*.8)
