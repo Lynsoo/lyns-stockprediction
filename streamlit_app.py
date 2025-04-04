@@ -46,6 +46,8 @@ def combine_data(euronext_f, dictionary):
 
 combined_data = combine_data(euronext_f, dictionary)
 
+if st.button("Clear All"):
+    st.cache_data.clear()
 
 company= st.text_input("Company Name", placeholder ="Enter Company")
 df = None
@@ -125,9 +127,20 @@ if df is not None and not df.empty:
     num_layers = 2
     hidden_size = 64
     output_size = 1
+    
+    @st.cache_resource
+    def load_model(input_size, hidden_size, num_layers):
+        return LSTMModel(input_size=input_size, hidden_size=hidden_size, num_layers=num_layers)
 
-    # defining  the model, loss function, and optimizer
-    model = LSTMModel(input_size, hidden_size, num_layers).to(device)
+    input_size = 1
+    num_layers = 2
+    hidden_size = 64
+    output_size = 1
+   
+    model = load_model(input_size, hidden_size, num_layers).to(device)
+
+    if st.button("Clear recource cache") : 
+        st.cache_resource.clear()
 
     loss_fn = torch.nn.MSELoss(reduction='mean')
 
