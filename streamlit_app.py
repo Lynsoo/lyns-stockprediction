@@ -74,7 +74,7 @@ if company:  # Checking if the user has entered a ticker
             st.write(f"Data for {ticker}:")
             st.dataframe(df)
         
-        except Exception as e:
+         except Exception as e:
             st.error(f"An error occurred: {e}")
     else:
         st.warning("Please enter a valid company.")
