@@ -76,8 +76,8 @@ if company:  # Checking if the user has entered a ticker
         
     except Exception as e:
             st.error(f"An error occurred: {e}")
-    else:
-        st.warning("Please enter a valid company.")
+else:
+    st.warning("Please enter a valid company.")
 
 if df is not None and not df.empty:
     training_data_len = math.ceil(len(df)*.8)
