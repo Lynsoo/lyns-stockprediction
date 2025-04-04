@@ -122,11 +122,6 @@ if df is not None and not df.empty:
           out = self.linear(out)
           return out
     device = torch.device('cpu')
-
-    input_size = 1
-    num_layers = 2
-    hidden_size = 64
-    output_size = 1
     
     @st.cache_resource
     def load_model(input_size, hidden_size, num_layers):
