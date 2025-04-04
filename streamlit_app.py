@@ -144,7 +144,7 @@ if df is not None and not df.empty:
     output_size = 1
    
     model = load_model(input_size, hidden_size, num_layers).to(device)
-    model.load_state_dict(torch.load('pretrained_lstm_model.pth'))
+    model.load_state_dict(torch.load('pretrained_model2.pth'))
     model.eval()
 
     
