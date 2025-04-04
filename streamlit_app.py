@@ -26,7 +26,7 @@ def load_euronext_data():
 euronext_f = load_euronext_data()
 
 # Loading S&P 500 data with caching
-@st.cache_data
+@st.cache_data(ttl=7 * 24 * 60 * 60)
 def load_sp500_data():
     table = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
     sp500_stocks = table[0]
@@ -40,15 +40,12 @@ def load_sp500_data():
 
 dictionary = load_sp500_data()
 
-@st.cache_data
+@st.cache_data(ttl=7 * 24 * 60 * 60)
 def combine_data(euronext_f, dictionary):
     combined_data = pd.concat([dictionary, euronext_f], ignore_index=True)
     return combined_data
 
 combined_data = combine_data(euronext_f, dictionary)
-
-if st.button("Clear All"):
-    st.cache_data.clear()
 
 company= st.text_input("Company Name", placeholder ="Enter Company")
 df = None
