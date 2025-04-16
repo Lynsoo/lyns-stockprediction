@@ -36,13 +36,13 @@ This repository contains code for:
 -   Libraries: pandas, scikit-learn, yfinance, matplotlib
 
   Install dependencies with:
-
-bash
+'''
 pip install -r requirements.txt
+'''
 If requirements.txt is not present, manually install:
-
-bash
+'''
 pip install numpy pandas matplotlib scikit-learn tensorflow yfinance
+'''
 
 
 
