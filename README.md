@@ -50,7 +50,7 @@ Or manually install:
 pip install numpy pandas matplotlib scikit-learn tensorflow yfinance
 ```
 
-Contributing
+## Contributing
 Contributions, feature requests, and bug reports are welcome!
 - Fork the repository
 - Create a feature branch (git checkout -b feature/YourFeature)
