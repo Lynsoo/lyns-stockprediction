@@ -11,8 +11,7 @@ import matplotlib.dates as mdates
 import math
 
 from torch.utils.data import Dataset, DataLoader
-import yfinance as yf #importing yahoo finance
-from datetime import date, timedelta, datetime
+import yfinance as yf #importing yahoo finance for the datasets
 
 euronext = pd.read_csv('/teamspace/studios/this_studio/stockpred/eurotickers.csv', sep=';')
 euronext_f = euronext[['Name', 'Symbol']]
