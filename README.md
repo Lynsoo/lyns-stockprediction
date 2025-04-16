@@ -35,14 +35,21 @@ This repository contains code for:
 -   Python 3.6+
 -   Libraries: pandas, scikit-learn, yfinance, matplotlib
 
+- Clone the repository:
+```
+git clone https://github.com/Lynsoo/lyns-stockprediction.git
+cd lyns-stockprediction
+```
+
   Install dependencies with:
 ```
 pip install -r requirements.txt
 ```
-If requirements.txt is not present, manually install:
+Or manually install:
 ```
 pip install numpy pandas matplotlib scikit-learn tensorflow yfinance
 ```
 
+- 
 
 
