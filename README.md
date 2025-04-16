@@ -27,15 +27,6 @@ This repository contains code for:
 - Prediction & Visualization: Generates future price predictions and plots them alongside actual data.
 - Deployment for production on Streamlit
 
-## Tech Stack 
-
-This project is built using the following technologies : 
-- StreamLit - a platform for production deployment ( for the user interface)
-- Python
-- Yahoo Finance - provides stock data
-- Pandas - a dataframe management library
-- Matplotlib - data visualization
-
 ## Getting Started
 ![Capture d'écran 2025-04-16 180528](https://github.com/user-attachments/assets/d042dc82-dda1-47d4-be9f-ef25c84fd3de)
 
@@ -43,6 +34,15 @@ This project is built using the following technologies :
 
 -   Python 3.6+
 -   Libraries: pandas, scikit-learn, yfinance, matplotlib
+
+  Install dependencies with:
+
+bash
+pip install -r requirements.txt
+If requirements.txt is not present, manually install:
+
+bash
+pip install numpy pandas matplotlib scikit-learn tensorflow yfinance
 
 
 
