@@ -10,7 +10,6 @@ import yfinance as yf
 import lxml
 
 from torch.utils.data import Dataset, DataLoader
-from datetime import date, timedelta, datetime
 
 st.title('Stock Prediction App')
 
@@ -143,7 +142,7 @@ if df is not None and not df.empty:
     output_size = 1
    
     model = load_model(input_size, hidden_size, num_layers).to(device)
-    model.load_state_dict(torch.load('pretrained_model2.pth'))
+    model.load_state_dict(torch.load('stock_prediction_model.pth'))
     model.eval()
 
     
