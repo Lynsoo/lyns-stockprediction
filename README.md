@@ -29,5 +29,11 @@ This project is built using the following technologies :
 - Pandas - a dataframe management library
 - Matplotlib - data visualization
 
+## Quick Start 
+![Capture d'écran 2025-04-16 180528](https://github.com/user-attachments/assets/d042dc82-dda1-47d4-be9f-ef25c84fd3de)
+
+To use the app, click on the link in the demo app section above, then enter the company's name. 
+NB : you don't need to enter the ticker symbol, enter the name only.
+
 
 
