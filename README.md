@@ -20,5 +20,14 @@ Historical data extraction from sources like Yahoo Finance and Wikipedia and pre
 - Forecasted data visualization
 - Deployment on StreamLit
 
+## Tech Stack 
+
+This project is built using the following technologies : 
+- StreamLit - a platform for production deployment ( for the user interface)
+- Python
+- Yahoo Finance - provides stock data
+- Pandas - a dataframe management library
+- Matplotlib - data visualization
+
 
 
