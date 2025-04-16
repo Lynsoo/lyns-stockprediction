@@ -12,13 +12,20 @@ A machine learning-powered web app for forecasting stock prices (worldwide).
 
 ## Project Overview
 
-This project aims to create an app based on an LSTM model that predicts the stock prices for S&P 500 and European companies. We have 5 main parts of the project :
+This project aims to create an app based on an LSTM model,a type of recurrent neural network (RNN), which are well-suited for sequential data such as stock prices, that predicts the stock prices for S&P 500 and European companies. 
 
-Historical data extraction from sources like Yahoo Finance and Wikipedia and preprocessing.
-- Model definition and training
-- Testing and validation
-- Forecasted data visualization
-- Deployment on StreamLit
+This repository contains code for:
+- Downloading historical stock data from Yahoo Finance.
+- Preprocessing and normalizing the data.
+- Building and training LSTM models to forecast stock prices.
+- Visualizing the prediction results against actual prices.
+
+##  Features
+- Data Acquisition: Automatically fetches historical stock data using yfinance.
+- Data Preprocessing: Scales and formats data for time series modeling.
+- LSTM Model: Implements an LSTM neural network for regression on stock price sequences.
+- Prediction & Visualization: Generates future price predictions and plots them alongside actual data.
+- Deployment for production on Streamlit
 
 ## Tech Stack 
 
@@ -29,11 +36,13 @@ This project is built using the following technologies :
 - Pandas - a dataframe management library
 - Matplotlib - data visualization
 
-## Quick Start 
+## Getting Started
 ![Capture d'écran 2025-04-16 180528](https://github.com/user-attachments/assets/d042dc82-dda1-47d4-be9f-ef25c84fd3de)
 
-To use the app, click on the link in the demo app section above, then enter the company's name. 
-NB : you don't need to enter the ticker symbol, enter the name only.
+### Prerequisites
+
+-   Python 3.6+
+-   Libraries: pandas, scikit-learn, yfinance, matplotlib
 
 
 
