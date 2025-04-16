@@ -17,6 +17,7 @@ st.info('This is a stock prediction app')
 
 if st.button("Clear All") :
     st.cache_data.clear()
+    st.cache_resource()
 
 # Loading Euronext data with streamlit caching
 @st.cache_data(ttl=7 * 24 * 60 * 60)
