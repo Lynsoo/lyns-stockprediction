@@ -35,7 +35,7 @@ This repository contains code for:
 -   Python 3.6+
 -   Libraries: pandas, scikit-learn, yfinance, matplotlib
 
-- Clone the repository:
+  Clone the repository:
 ```
 git clone https://github.com/Lynsoo/lyns-stockprediction.git
 cd lyns-stockprediction
@@ -50,6 +50,11 @@ Or manually install:
 pip install numpy pandas matplotlib scikit-learn tensorflow yfinance
 ```
 
-- 
-
+Contributing
+Contributions, feature requests, and bug reports are welcome!
+- Fork the repository
+- Create a feature branch (git checkout -b feature/YourFeature)
+- Commit your changes (git commit -m 'Add some feature')
+- Push to the branch (git push origin feature/YourFeature)
+- Open a Pull Request
 
